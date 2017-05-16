@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/foxhoundhcm/nodejstest/issues"
   },
-  "homepage": "https://github.com/foxhoundhcm/nodejstest#readme"
+  "homepage": "https://github.com/foxhoundhcm/nodejstest#readme",
+  "dependencies": {
+    "cheerio": "^0.22.0",
+    "crawler": "^1.0.5",
+    "iconv-lite": "^0.4.17"
+  }
 }
