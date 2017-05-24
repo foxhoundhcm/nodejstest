@@ -19,6 +19,9 @@
   "dependencies": {
     "cheerio": "^0.22.0",
     "crawler": "^1.0.5",
-    "iconv-lite": "^0.4.17"
+    "iconv-lite": "^0.4.17",
+    "mongodb": "^2.2.27",
+    "redis": "^2.7.1",
+    "xlsx": "^0.10.3"
   }
 }
