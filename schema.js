@@ -135,6 +135,26 @@ const Mutation = new GraphQLObjectType({
             email: args.email.toLowerCase()
           });
         }
+      },
+      delPerson:{
+        type: GraphQLString,
+        args: {
+          id: {
+            type: new GraphQLNonNull(GraphQLInt)
+          }
+        },
+        resolve(_,args){
+          Db.models.person.findById(args.id).then(person =>{
+                person.destroy().then(
+                  result => {
+                    console.log('Success');
+                  }).catch(err => {
+                  console.log(err);
+                  })
+
+        })
+
+        }
       }
     }
   }

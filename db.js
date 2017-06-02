@@ -66,11 +66,13 @@ Conn.sync({force:true}).then(()=>{
       email: Faker.internet.email(),
     }).then(person =>{
       return person.createPost({
-        title: 'Sample title by ${person.firstName}',
+        title: `Sample title by ${person.firstName}`,
         content: 'This is a sample article'
       });
     });
   });
+
+}).then(post =>{
   console.log('done!');
 });
 
