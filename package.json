@@ -4,6 +4,10 @@
   "description": "nodejs test",
   "main": "index.js",
   "scripts": {
+    "dev" : "nodemon --exec babel-node graphqlserver.js",
+    "build": "babel src --out-dir dist",
+    "prestart":"babel src --out-dir dist",
+    "start": "node dist/graphqlserver.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

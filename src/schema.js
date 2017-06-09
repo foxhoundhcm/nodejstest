@@ -11,35 +11,35 @@ import Db from './db';
 const Person = new GraphQLObjectType({
   name: 'Person',
   description: 'This represents a Person',
-  fields: ()=>{
+  fields: () => {
     return {
-      id:{
+      id: {
         type: GraphQLInt,
-        resolve(person){
+        resolve(person) {
           return person.id;
         }
       },
-      firstName:{
+      firstName: {
         type: GraphQLString,
-        resolve(person){
+        resolve(person) {
           return person.firstName;
         }
       },
-      lastName:{
+      lastName: {
         type: GraphQLString,
-        resolve(person){
+        resolve(person) {
           return person.lastName;
         }
       },
-      email:{
+      email: {
         type: GraphQLString,
-        resolve(person){
+        resolve(person) {
           return person.email;
         }
       },
-      posts:{
-        type: new GraphQLList(Post) ,
-        resolve(person){
+      posts: {
+        type: new GraphQLList(Post),
+        resolve(person) {
           return person.getPosts();
         }
       },
@@ -50,29 +50,29 @@ const Person = new GraphQLObjectType({
 const Post = new GraphQLObjectType({
   name: 'Post',
   description: 'This is a Post',
-  fields:()=>{
+  fields: () => {
     return {
-      id:{
+      id: {
         type: GraphQLInt,
-        resolve(post){
+        resolve(post) {
           return post.id;
         }
       },
-      title:{
+      title: {
         type: GraphQLString,
-        resolve(post){
+        resolve(post) {
           return post.title;
         }
       },
-      content:{
+      content: {
         type: GraphQLString,
-        resolve(post){
+        resolve(post) {
           return post.content;
         }
       },
-      person:{
+      person: {
         type: Person,
-        resolve(post){
+        resolve(post) {
           return post.getPerson();
         }
       }
@@ -84,26 +84,30 @@ const Post = new GraphQLObjectType({
 const Query = new GraphQLObjectType({
   name: 'Query',
   description: 'This is a root query',
-  fields:() =>{
+  fields: () => {
     return {
       people: {
         type: new GraphQLList(Person),
-        args:{
-          id:{
-            type:GraphQLInt
+        args: {
+          id: {
+            type: GraphQLInt
           },
-          email:{
-            type:GraphQLString
+          email: {
+            type: GraphQLString
           }
         },
-        resolve(root,args){
-          return Db.models.person.findAll({where:args});
+        resolve(root, args) {
+          return Db.models.person.findAll({
+            where: args
+          });
         }
       },
-      posts:{
+      posts: {
         type: new GraphQLList(Post),
-        resolve(root,args){
-          return Db.models.post.findAll({where:args});
+        resolve(root, args) {
+          return Db.models.post.findAll({
+            where: args
+          });
         }
       }
     }
@@ -113,7 +117,7 @@ const Query = new GraphQLObjectType({
 const Mutation = new GraphQLObjectType({
   name: 'Mutation',
   description: 'Functions to create stuff',
-  fields(){
+  fields() {
     return {
       addPerson: {
         type: Person,
@@ -121,14 +125,14 @@ const Mutation = new GraphQLObjectType({
           firstName: {
             type: new GraphQLNonNull(GraphQLString)
           },
-          lastName:{
+          lastName: {
             type: new GraphQLNonNull(GraphQLString)
           },
-          email:{
+          email: {
             type: new GraphQLNonNull(GraphQLString)
           }
         },
-        resolve(_,args){
+        resolve(_, args) {
           return Db.models.person.create({
             firstName: args.firstName,
             lastName: args.lastName,
@@ -136,23 +140,23 @@ const Mutation = new GraphQLObjectType({
           });
         }
       },
-      delPerson:{
+      delPerson: {
         type: GraphQLString,
         args: {
           id: {
             type: new GraphQLNonNull(GraphQLInt)
           }
         },
-        resolve(_,args){
-          Db.models.person.findById(args.id).then(person =>{
-                person.destroy().then(
-                  result => {
-                    console.log('Success');
-                  }).catch(err => {
-                  console.log(err);
-                  })
+        resolve(_, args) {
+          Db.models.person.findById(args.id).then(person => {
+            person.destroy().then(
+              result => {
+                console.log('Success');
+              }).catch(err => {
+              console.log(err);
+            })
 
-        })
+          })
 
         }
       }
@@ -162,7 +166,7 @@ const Mutation = new GraphQLObjectType({
 
 const Schema = new GraphQLSchema({
   query: Query,
-  mutation:Mutation
+  mutation: Mutation
 });
 
 export default Schema;

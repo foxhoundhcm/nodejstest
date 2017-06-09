@@ -1,7 +1,9 @@
 import koa from 'koa';
 import koaRouter from 'koa-router';
 import koaBody from 'koa-bodyparser';
-import { graphqlKoa } from 'graphql-server-koa';
+import {
+  graphqlKoa
+} from 'graphql-server-koa';
 import graphqlHTTP from 'koa-graphql';
 
 import Schema from './schema';
@@ -28,6 +30,6 @@ router.all('/graphql', graphqlHTTP({
 
 app.use(router.routes());
 app.use(router.allowedMethods());
-app.listen(PORT,()=>{
+app.listen(PORT, () => {
   console.log(`\nApp listening on port ${PORT}`);
 });
