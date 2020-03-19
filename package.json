@@ -47,7 +47,7 @@
     "mongodb": "^2.2.27",
     "mysql": "^2.13.0",
     "redis": "^2.7.1",
-    "sequelize": "^3.30.4",
+    "sequelize": ">=4.44.3",
     "xlsx": "^0.10.3"
   },
   "devDependencies": {
