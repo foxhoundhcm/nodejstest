@@ -44,7 +44,7 @@
     "koa-graphql": "^0.7.0",
     "koa-router": "^7.2.0",
     "lodash": "^4.17.4",
-    "mongodb": "^2.2.27",
+    "mongodb": "^3.6.1",
     "mysql": "^2.13.0",
     "redis": "^2.7.1",
     "sequelize": ">=4.44.3",
