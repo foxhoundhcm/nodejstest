@@ -35,7 +35,7 @@
     "cheerio": "^0.22.0",
     "crawler": "^1.0.5",
     "faker": "^4.1.0",
-    "graphiql": "^0.10.2",
+    "graphiql": ">=1.4.7",
     "graphql": ">=1.4.7",
     "graphql-server-koa": "^0.8.0",
     "iconv-lite": "^0.4.17",
